@@ -1,0 +1,7 @@
+{
+  "name": "myabsen5",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
