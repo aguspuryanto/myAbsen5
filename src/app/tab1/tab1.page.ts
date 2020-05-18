@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +13,28 @@ export class Tab1Page {
   coords: any;
   address: any;
   
-  constructor(private nativeGeocoder: NativeGeocoder) {}
+  constructor(private nativeGeocoder: NativeGeocoder, private localNotifications: LocalNotifications) {
+    // Schedule a single notification
+    // this.localNotifications.schedule({
+    //   id: 1,
+    //   text: 'Single ILocalNotification',
+    //   sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
+    //   data: { secret: key }
+    // });
+
+    // Schedule multiple notifications
+    this.localNotifications.schedule([{
+      id: 1,
+      title: 'Local ILocalNotification Example',
+      text: 'Multi ILocalNotification 1',
+      icon: 'http://example.com/icon.png'
+    }, {
+      id: 2,
+      title: 'Local ILocalNotification Example',
+      text: 'Multi ILocalNotification 2',
+      icon: 'http://example.com/icon.png'
+    }]);
+  }
 
   async locate() {
     const coordinates = await Geolocation.getCurrentPosition();
