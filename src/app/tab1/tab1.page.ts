@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { Plugins } from '@capacitor/core';
+import { Capacitor, Plugins } from '@capacitor/core';
+
+// const { Capacitor } = Plugins;
 const { Geolocation } = Plugins;
+const { Device } = Plugins;
+
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
@@ -14,6 +18,8 @@ export class Tab1Page {
   address: any;
   
   constructor(private nativeGeocoder: NativeGeocoder, private localNotifications: LocalNotifications) {
+    console.log('Capacitor.platform', Capacitor.platform); // web ios android
+    console.log( this.deviceInfo() );
     // Schedule a single notification
     // this.localNotifications.schedule({
     //   id: 1,
@@ -34,6 +40,11 @@ export class Tab1Page {
       text: 'Multi ILocalNotification 2',
       icon: 'http://example.com/icon.png'
     }]);
+  }
+
+  async deviceInfo(){
+    const info = await Device.getInfo();
+    console.log(info);
   }
 
   async locate() {

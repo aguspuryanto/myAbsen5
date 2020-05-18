@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AgmCoreModule } from '@agm/core';
     StatusBar,
     SplashScreen,
     NativeGeocoder,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
